@@ -1,0 +1,281 @@
+---
+title: "Indo além na organização de dados usando o R com tidyverse"
+author: "Beatriz Milz"
+date: "XVIII Congresso Brasileiro de Limnologia | Outubro 2022   <br><br> Slides: **beatrizmilz.github.io/2022-cblimnologia** "
+format: 
+  revealjs:
+   # logo: "images/logo.png"
+    width: 1600
+    height: 900
+    self-contained: false
+    incremental: false
+    footer: "Slides por [Beatriz Milz](https://beamilz.com) (@BeaMilz), feito com  [Quarto](https://quarto.org/docs/presentations/revealjs/index.html). Código disponível no [GitHub](https://github.com/beatrizmilz/2022-cblimnologia)."
+    theme: ["custom.scss"]
+    slide-number: c/t
+    show-slide-number: all
+    hash-type: number
+    preview-links: false
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    fig.align: "center"
+    eval: true
+    include: true
+    echo: true
+---
+
+```{r}
+#| echo: false
+source("utils.R")
+```
+
+
+## Beatriz Milz 🇧🇷 {.center .aboutmeslide}
+
+::: columns
+::: {.column width="60%"}
+-   Contato
+
+    -   Twitter: [\@BeaMilz](https://twitter.com/BeaMilz)
+
+    -   Blog: [beamilz.com](https://beamilz.com)
+
+-   Sobre mim
+
+    -   Co-organizadora: R-Ladies São Paulo / Latin-R / satRday São Paulo
+
+    -   Professora na [Curso-R](https://curso-r.com/)
+
+    -   Instrutora de Tidyverse certificada pela RStudio
+:::
+
+::: {.column width="40%"}
+![](images/octocat-1656339210373.png)
+:::
+:::
+
+## Tarefas iniciais
+
+Caso não tenha, crie uma conta no serviço:
+
+-   RStudio Cloud: <https://rstudio.cloud/>
+
+Dica: Você pode criar uma conta vinculada ao Gmail ou GitHub.
+
+## Objetivos de aprendizagem
+
+-   O minicurso é destinado a pessoas que já tem um conhecimento básico sobre tidyverse e dplyr (como selecionar colunas, filtrar linhas, ordenar linhas, agrupar e sumarizar) e querem aprender mais.
+
+-   O foco minicurso será realizado com exemplos práticos.
+
+-   Falaremos sobre boas práticas também!
+
+## tidyverse
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("tidyverse_celestial")
+```
+
+
+
+# Sobre esse tutorial....
+
+## Faremos muita prática!
+
+![](images/livecoding.jpg){fig-align="center"}
+
+::: footer
+Arte por [Allison Horst](https://mobile.twitter.com/allison_horst)
+:::
+
+
+## Tem novidades surgindo com frequência!
+
+![](images/something-new.jpg){fig-align="center"}
+
+::: footer
+Arte por [Allison Horst](https://mobile.twitter.com/allison_horst)
+:::
+
+
+## Reprodutibilidade
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("reproducibility_court")
+```
+
+
+## Vamos usar um projeto do RStudio
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("cracked_setwd")
+```
+
+
+## Dicas gerais
+
+::: incremental
+-   Não use caracteres especiais para nomear arquivos, pastas, variáveis, colunas, funções, e por aí vai!
+
+-   Use projetos do RStudio. Crie um `.Rproj` para cada projeto. Dentro deste projeto, guarde de forma organizada os arquivos relacionados à este projeto.
+
+-   Tenha uma pasta de dados brutos (ex. `data-raw/`) e dados tratados (ex. `data/`). NÃO MISTURE!
+
+-   Sempre que receber/baixar uma nova base de dados, NÃO FAÇA ALTERAÇÕES MANUALMENTE NOS DADOS BRUTOS!
+
+-   Pense sempre na reprodutibilidade :)
+:::
+
+## Conceito importante: tidy data
+
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("tidydata_1", ext = ".jpg", legenda_complementar = "Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst.")
+```
+
+
+## Conceito importante: tidy data
+
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("tidydata_2", ext = ".jpg", legenda_complementar = "Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst.")
+```
+
+
+
+## Conceito importante: tidy data
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("tidydata_3", ext = ".jpg", legenda_complementar = "Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst.")
+```
+
+
+## Conceito importante: tidy data
+
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("tidydata_7", ext = ".jpg", legenda_complementar = "Illustrations from the [Openscapes](https://www.openscapes.org/) blog [*Tidy Data for reproducibility, efficiency, and collaboration*](https://www.openscapes.org/blog/2020/10/12/tidy-data/) by Julia Lowndes and Allison Horst.")
+```
+
+## Dados
+
+-   A base de dados que usaremos foi extraída do sistema INFOAGUAS/ [CETESB](https://sistemainfoaguas.cetesb.sp.gov.br/AguasSuperficiais/RelatorioQualidadeAguasSuperficiais/Monitoramento)
+
+-   Dados de qualidade de águas superficiais no Estado de SP.
+
+-   Filtro usado: pontos relacionados com o reservatório Billings!
+
+## importando vários arquivos de uma vez
+
+**Importando a base de dados:**
+
+```{r}
+#| include: true
+#| 
+dados_infoaguas <- readr::read_rds("dados/infoaguas_results_billings.Rds")
+```
+
+## Conhecendo a base de dados
+
+```{r}
+dplyr::glimpse(dados_infoaguas)
+```
+
+**Informações úteis:** quais variáveis temos? qual é o nome das colunas? qual é o tipo das colunas?
+
+**Outras perguntas:** Qual é o formato da base de dados? Qual é a unidade amostral (o que cada linha representa)?
+
+## Quais parâmetros temos na base?
+
+```{r}
+dados_infoaguas |> 
+  dplyr::count(parametro, sort = TRUE) |> 
+  dplyr::mutate(porc = n/nrow(dados_infoaguas))
+```
+
+## Arrumar o nome das colunas utilizando padrões
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("janitor_clean_names")
+```
+
+## Criar novas colunas a partir dos dados
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("dplyr_mutate")
+```
+
+
+## Criar novas colunas a partir dos dados
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("dplyr_case_when")
+```
+
+## Criar novas colunas a partir dos dados
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("parse_number")
+```
+
+
+## Transformar formato da base
+
+![](images/original-dfs-tidy.png){fig-align="center"}
+
+::: footer
+Fonte:  [Garrick Aden-Buie (@grrrck) - Tidy Animated Verbs](https://github.com/gadenbuie/tidyexplain)
+:::
+
+
+## Transformar formato da base
+
+![](https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif){fig-align="center"}
+
+::: footer
+Fonte:  [Garrick Aden-Buie (@grrrck) - Tidy Animated Verbs](https://github.com/gadenbuie/tidyexplain)
+:::
+
+
+
+## Aplicar uma transformação em várias variáveis de uma vez
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("dplyr_across")
+```
+
+## Melhorar a estrutura do resultado de um modelo
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("broom_package")
+```
+
+
+## Onde aprender mais...
