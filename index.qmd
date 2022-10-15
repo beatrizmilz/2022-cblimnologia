@@ -221,8 +221,7 @@ dplyr::glimpse(dados_infoaguas)
 
 ```{r}
 dados_infoaguas |> 
-  dplyr::count(parametro, sort = TRUE) |> 
-  dplyr::mutate(porc = n/nrow(dados_infoaguas))
+  dplyr::count(parametro, sort = TRUE)
 ```
 
 ## Arrumar o nome das colunas utilizando padrões

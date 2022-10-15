@@ -603,22 +603,21 @@ $ long                    &lt;dbl&gt; -46.67389, -46.67389, -46.67389, -46.67389
 <h2>Quais parâmetros temos na base?</h2>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dados_infoaguas <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(parametro, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">porc =</span> n<span class="sc">/</span><span class="fu">nrow</span>(dados_infoaguas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(parametro, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 249 × 3
-   parametro                n   porc
-   &lt;chr&gt;                &lt;int&gt;  &lt;dbl&gt;
- 1 Nitrogênio Amoniacal  1997 0.0250
- 2 Sólido Total          1996 0.0250
- 3 pH                    1995 0.0249
- 4 Cloreto Total         1993 0.0249
- 5 Temperatura da Água   1992 0.0249
- 6 Fósforo Total         1989 0.0249
- 7 Nitrogênio-Nitrato    1989 0.0249
- 8 Turbidez              1983 0.0248
- 9 Nitrogênio-Nitrito    1979 0.0247
-10 DBO (5, 20)           1973 0.0247
+<pre><code># A tibble: 249 × 2
+   parametro                n
+   &lt;chr&gt;                &lt;int&gt;
+ 1 Nitrogênio Amoniacal  1997
+ 2 Sólido Total          1996
+ 3 pH                    1995
+ 4 Cloreto Total         1993
+ 5 Temperatura da Água   1992
+ 6 Fósforo Total         1989
+ 7 Nitrogênio-Nitrato    1989
+ 8 Turbidez              1983
+ 9 Nitrogênio-Nitrito    1979
+10 DBO (5, 20)           1973
 # … with 239 more rows</code></pre>
 </div>
 </div>
