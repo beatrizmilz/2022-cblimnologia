@@ -25,12 +25,6 @@ knitr:
     echo: true
 ---
 
-```{r}
-#| echo: false
-source("utils.R")
-```
-
-
 ## Beatriz Milz 🇧🇷 {.center .aboutmeslide}
 
 ::: columns
@@ -54,6 +48,29 @@ source("utils.R")
 ![](images/octocat-1656339210373.png)
 :::
 :::
+
+
+```{r}
+#| echo: false
+source("utils.R")
+```
+
+
+## Formação
+
+  - 2012 - 2015 - Gestão Ambiental - EACH/USP
+
+  - 2016 - 2018 - UNIFESP/Diadema - Mestrado - Análise Ambiental Integrada
+
+  - 2019 - atualmente - IEE/USP - Ciência Ambiental
+
+- Sobre a formação: <https://beatrizmilz.github.io/slidesR/pessoal/09-2021-UFV.html>
+
+- Primeiro artigo como primeira autora, derivado do mestrado: 
+  - [Ambi-Agua](http://www.ambi-agua.net/seer/index.php/ambi-agua/article/view/2402)
+  - [Código](https://github.com/beatrizmilz/ambi-agua-2823)
+
+
 
 ## Tarefas iniciais
 
