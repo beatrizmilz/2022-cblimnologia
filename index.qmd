@@ -195,34 +195,36 @@ adicionar_arte_horst("tidydata_7", ext = ".jpg", legenda_complementar = "Illustr
 
 -   Dados de qualidade de águas superficiais no Estado de SP.
 
--   Filtro usado: pontos relacionados com o reservatório Billings!
+- 2008 à 2022, Fósforo total e clorofila-*a*, pontos na Represa Billings.
 
-## importando vários arquivos de uma vez
 
-**Importando a base de dados:**
+# Importar os dados
+
+## Importando vários arquivos de uma vez
+
+**Importando apenas uma das base de dados:**
 
 ```{r}
 #| include: true
-#| 
-dados_infoaguas <- readr::read_rds("dados/infoaguas_results_billings.Rds")
+
+infoaguas_exemplo <- readxl::read_xlsx("dados-brutos/RelatorioQualidadeAguasSuperficiais_clorofila-a_2008-2012.xlsx")
+
 ```
+ 
+ - Importar muitos arquivos: na prática!
+
 
 ## Conhecendo a base de dados
 
 ```{r}
-dplyr::glimpse(dados_infoaguas)
+dplyr::glimpse(infoaguas_exemplo)
 ```
 
 **Informações úteis:** quais variáveis temos? qual é o nome das colunas? qual é o tipo das colunas?
 
 **Outras perguntas:** Qual é o formato da base de dados? Qual é a unidade amostral (o que cada linha representa)?
 
-## Quais parâmetros temos na base?
-
-```{r}
-dados_infoaguas |> 
-  dplyr::count(parametro, sort = TRUE)
-```
+# Limpar a base de dados
 
 ## Arrumar o nome das colunas utilizando padrões
 
@@ -240,6 +242,22 @@ adicionar_arte_horst("janitor_clean_names")
 adicionar_arte_horst("dplyr_mutate")
 ```
 
+## Criar novas colunas a partir dos dados
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("parse_number")
+```
+
+
+## Aplicar uma transformação em várias variáveis de uma vez
+
+```{r}
+#| results: 'asis'
+#| echo: false
+adicionar_arte_horst("dplyr_across")
+```
 
 ## Criar novas colunas a partir dos dados
 
@@ -249,13 +267,6 @@ adicionar_arte_horst("dplyr_mutate")
 adicionar_arte_horst("dplyr_case_when")
 ```
 
-## Criar novas colunas a partir dos dados
-
-```{r}
-#| results: 'asis'
-#| echo: false
-adicionar_arte_horst("parse_number")
-```
 
 
 ## Transformar formato da base
@@ -277,13 +288,6 @@ Fonte:  [Garrick Aden-Buie (@grrrck) - Tidy Animated Verbs](https://github.com/g
 
 
 
-## Aplicar uma transformação em várias variáveis de uma vez
-
-```{r}
-#| results: 'asis'
-#| echo: false
-adicionar_arte_horst("dplyr_across")
-```
 
 ## Melhorar a estrutura do resultado de um modelo
 
