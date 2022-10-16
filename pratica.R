@@ -168,5 +168,9 @@ infoaguas |>
   geom_line(aes(x = data_coleta, y = valor, color = codigo_ponto)) +
   facet_wrap(vars(codigo_ponto)) +
   theme_bw()
+
+
+
+# http://pnqa.ana.gov.br/Publicacao/RESOLUCAO_CONAMA_n_357.pdf
   
 
