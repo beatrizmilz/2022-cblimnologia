@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
+# Indo além na organização de dados usando o R com tidyverse
+
+- Beatriz Milz
+
+- XVIII Congresso Brasileiro de Limnologia | Outubro 2022
+
+- **Slides:** <https://beatrizmilz.github.io/2022-cblimnologia>
+
+- **Prática editada durante o minicurso:** <https://github.com/beatrizmilz/2022-cblimnologia/blob/main/pratica-editada.R>
+
+- **Prática original:** <https://github.com/beatrizmilz/2022-cblimnologia/blob/main/pratica.R>
+
+
+## Links citados:
+
+- <https://rstudio.cloud/content/4773874>
+
+- <https://beamilz.com/posts/2021-03-29-desvendando-erros/pt/>
+
+- <https://tidyr.tidyverse.org/reference/pivot_wider.html>
+
+- <https://www.sciencedirect.com/science/article/abs/pii/S0925857413003091> 
+
+- <https://dplyr.tidyverse.org/reference/case_when.html>
+
+
